@@ -15,7 +15,7 @@ import org.agora.statistic.dto.response.RegistrationResponseDto;
 
 import java.util.List;
 
-@FeignClient(name = "AGORA-API", fallback = AgoraApiClientFallback.class)
+@FeignClient(name = "AGORA-API", fallbackFactory = AgoraApiClientFallbackFactory.class)
 @Headers("Content-Type: application/json")
 public interface AgoraApiClient {
 

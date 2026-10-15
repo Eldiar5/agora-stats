@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class LoginResponseDto {
 
-    private String token;
+    // Формат ответа agora-api: {"token": {"accessToken": ..., "refreshToken": ..., "tokenType": ...}, "login": ...}
+    private TokenResponseDto token;
+    private String login;
 
 }

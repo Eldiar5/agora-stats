@@ -97,7 +97,7 @@ public class StatisticScheduler {
         LoginResponseDto loginResponse = agoraApiClient.login(loginRequest);
 
         if (isValidToken(loginResponse)) {
-            return "Bearer " + loginResponse.getToken();
+            return "Bearer " + loginResponse.getToken().getAccessToken();
         }
 
         // Если пришел null (Fallback сработал), значит, скорее всего, пользователя нет (или API лежит).
@@ -113,7 +113,7 @@ public class StatisticScheduler {
 
             if (isValidToken(loginResponse)) {
                 log.info("[Analytics-Service] Бот зарегистрирован и залогинен!");
-                return "Bearer " + loginResponse.getToken();
+                return "Bearer " + loginResponse.getToken().getAccessToken();
             }
         }
 
@@ -122,6 +122,7 @@ public class StatisticScheduler {
     }
 
     private boolean isValidToken(LoginResponseDto response) {
-        return response != null && response.getToken() != null && !response.getToken().isEmpty();
+        return response != null && response.getToken() != null
+                && response.getToken().getAccessToken() != null && !response.getToken().getAccessToken().isEmpty();
     }
 }
